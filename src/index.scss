@@ -1,0 +1,27 @@
+@import 'reset';
+@import 'header';
+@import 'section';
+
+body {
+    font-family: Roboto;
+    font-weight: 500;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Yeseva One';
+    font-weight: 400;
+}
+
+p {
+    max-width: 75ch;
+}
+
+.main {
+    --gutter: 1rem;
+    display: grid;
+    grid-template-columns: minmax(var(--gutter), 1fr) min(calc(100% - (var(--gutter) * 2)), 1200px) minmax(var(--gutter), 1fr);
+}
+
+.main > * {
+    grid-column: 2;
+}

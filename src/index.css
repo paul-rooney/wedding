@@ -1,0 +1,261 @@
+@charset "UTF-8";
+/***
+    The new CSS reset - version 1.8.2 (last updated 23.12.2022)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a, button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input, textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+pre {
+  all: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+
+/* remove default dot (•) sign */
+::marker {
+  content: "";
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable=false])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable=true]) {
+  -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+}
+
+.header {
+  --gutter: 1rem;
+  background-color: hsla(0deg, 0%, 100%, 0.875);
+  backdrop-filter: blur(5px);
+  display: grid;
+  grid-template-columns: minmax(var(--gutter), 1fr) min(100% - var(--gutter) * 2, 1200px) minmax(var(--gutter), 1fr);
+  padding-block: 1rem;
+  position: sticky;
+  top: 0;
+}
+@media (min-width: 1200px) {
+  .header {
+    padding-block: 1rem;
+  }
+}
+
+.header__content {
+  grid-column: 2;
+  display: flex;
+  align-items: baseline;
+}
+
+.header__logo {
+  margin-inline-end: auto;
+  padding-block: 1rem;
+}
+
+@media (min-width: 900px) {
+  .header__nav {
+    grid-row: 1;
+  }
+}
+
+.header__nav__toggle {
+  padding-block: 1rem;
+}
+@media (min-width: 600px) {
+  .header__nav__toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .header__nav__menu {
+    display: none;
+  }
+}
+@media (min-width: 600px) {
+  .header__nav__menu {
+    display: flex;
+    gap: 2rem;
+  }
+}
+
+.header__nav__menu__item {
+  padding-block: 1rem;
+  text-align: center;
+}
+.header__nav__menu__item:nth-of-type(3) {
+  grid-column: 4;
+}
+.header__nav__menu__item:nth-of-type(4) {
+  grid-column: 5;
+}
+
+.header__nav__menu__item__link {
+  font-size: 0.875em;
+  letter-spacing: 0.05em;
+  padding-block: 1rem;
+  text-transform: uppercase;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 2rem;
+  border-bottom: 1px solid currentColor;
+  padding-block: 5rem;
+}
+@media (min-width: 600px) {
+  .section {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.section__heading {
+  font-size: 5rem;
+  grid-column: 1/-1;
+  letter-spacing: -0.02em;
+  margin-block-end: 5rem;
+}
+
+.section__heading--primary {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14rem;
+  font-size: clamp(3rem, 18.6875vw, 14rem);
+  letter-spacing: -0.04em;
+  line-height: 0.85em;
+  margin-block-end: 0;
+}
+
+.columns {
+  display: grid;
+  grid-column: 1/3;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 599px) {
+  .columns {
+    order: 1;
+  }
+}
+
+.columns__cta {
+  grid-column: 1/span 4;
+}
+
+.section--hero {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  padding-block-start: 0;
+}
+
+.section--venue .section__figure {
+  grid-column: 3/span 2;
+}
+
+.section--stay .section__content {
+  grid-column: 3/span 2;
+}
+.section--stay .section__figure {
+  grid-column: 1/span 2;
+  grid-row: 1;
+}
+
+body {
+  font-family: Roboto;
+  font-weight: 500;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Yeseva One";
+  font-weight: 400;
+}
+
+p {
+  max-width: 75ch;
+}
+
+.main {
+  --gutter: 1rem;
+  display: grid;
+  grid-template-columns: minmax(var(--gutter), 1fr) min(100% - var(--gutter) * 2, 1200px) minmax(var(--gutter), 1fr);
+}
+
+.main > * {
+  grid-column: 2;
+}
+
+/*# sourceMappingURL=index.css.map */
