@@ -1,0 +1,140 @@
+.overflow-x {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    background-color: hsl(0 50% 99%);
+
+    grid-column: 1 / -1 !important; // .main > * { grid-column } is overwriting this currently
+}
+
+.gallery {
+    --scroll-padding-inline: calc((100vw - 1200px) / 2);
+    display: grid;
+    gap: 2rem;
+    grid-auto-columns: 300px;
+    grid-auto-flow: column;
+    scroll-snap-type: x proximity;
+    // scroll-padding-inline: var(--scroll-padding-inline);
+    padding-inline: max(var(--scroll-padding-inline), var(--gutter));
+    padding-block: 1rem;
+}
+
+.card {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+                0 1px 5px 0 rgba(0, 0, 0, .12),
+                0 3px 1px -2px rgba(0, 0, 0, .2);
+    position: relative;
+    scale: 1;
+    scroll-snap-align: start;
+    transition: all 125ms ease;
+
+    &:focus,
+    &:hover {
+        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14),
+                    0 1px 10px 0 rgba(0, 0, 0, .12),
+                    0 2px 4px -1px rgba(0, 0, 0, .4);
+        scale: 1.0625;
+        transition: all 250ms ease;
+    }
+
+    &:last-child::after {
+        position: absolute;
+        content: '';
+        inline-size: max(var(--scroll-padding-inline), var(--gutter));
+        block-size: 100%;
+        inset-block-start: 0;
+        inset-inline-end: calc(max(var(--scroll-padding-inline), var(--gutter)) * -1);
+    }
+}
+
+.card.active {
+    cursor: grabbing;
+}
+
+.card__wrapper {
+    border-radius: 0 0 0.25rem 0.25rem;
+    border-top-width: 0;
+    padding: 1.5rem;
+}
+
+.card img {
+    aspect-ratio: 16/9;
+    border-radius: 0.25rem 0.25rem 0 0;
+    object-fit: cover;
+    display: block;
+    height: auto;
+    width: 100%;
+    max-height: 300px;
+}
+
+.card__wrapper__heading {
+    align-items: start;
+    display: flex;
+    font-family: inherit;
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-block-end: 0.5rem;
+
+    &::after {
+        content: url('../public/assets/svg/external-link.svg');
+        margin-inline-start: 0.5rem;
+    }
+}
+
+.card__wrapper__rating {
+    margin-block-end: 2rem;
+}
+
+.card__wrapper__content {
+    font-size: 0.875em;
+}
+
+.card__wrapper__content > * + * {
+    margin-block-start: .375rem;
+}
+
+.card__wrapper__content__address {
+    align-items: start;
+    display: flex;
+
+    &::before {
+        content: url('../public/assets/svg/map-pin.svg');
+        margin-inline-end: 0.5rem;
+    }
+}
+
+.card__wrapper__content__price {
+    align-items: start;
+    display: flex;
+
+    &::before {
+        content: url('../public/assets/svg/credit-card.svg');
+        stroke: red;
+        margin-inline-end: 0.5rem;
+    }
+}
+
+.card__wrapper__content__distance {
+    align-items: start;
+    display: flex;
+
+    &::before {
+        content: url('../public/assets/svg/map.svg');
+        margin-inline-end: 0.5rem;
+    }
+}
+
+.card__wrapper__content__datetime {
+    align-items: baseline;
+    display: flex;
+
+    span {
+        font-size: .875em;
+        font-variant: small-caps;
+        padding-inline-start: .125rem;
+    }
+
+    &::before {
+        content: url('../public/assets/svg/clock.svg');
+        margin-inline-end: 0.5rem;
+    }
+}

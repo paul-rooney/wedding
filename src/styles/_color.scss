@@ -1,0 +1,23 @@
+:root {
+  --primary-hue: 320;
+  --primary-saturation: 50%;
+  --primary-lightness: 50%;
+
+  --surface-hue: var(--primary-hue);
+  --surface-saturation: 30%;
+  --surface-lightness: 95%;
+
+  --text-hue: var(--primary-hue);
+  --text-saturation: 60%;
+  --text-lightness: 15%;
+
+  --primary: hsl(var(--primary-hue) var(--primary-saturation) var(--primary-lightness) / var(--opacity, 1));
+
+  --surface-100: hsl(var(--surface-hue) calc(var(--surface-saturation) - 10%) calc(var(--surface-lightness) + 3.75%) / var(--opacity, 1));
+  --surface-300: hsl(var(--surface-hue) calc(var(--surface-saturation) - 5%) calc(var(--surface-lightness) + 2.5%) / var(--opacity, 1));
+  --surface-500: hsl(var(--surface-hue) var(--surface-saturation) var(--surface-lightness) / var(--opacity, 1));
+  --surface-700: hsl(var(--surface-hue) calc(var(--surface-saturation) + 25% ) calc(var(--surface-lightness) - 60%) / var(--opacity, 1));
+  --surface-900: hsl(var(--surface-hue) calc(var(--surface-saturation) + 40% ) calc(var(--surface-lightness) - 80%) / var(--opacity, 1));
+
+  --text: hsl(var(--text-hue) var(--text-saturation) var(--text-lightness) / var(--opacity, 1));
+}

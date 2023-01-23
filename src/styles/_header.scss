@@ -1,0 +1,111 @@
+.header {
+    --gutter: 1rem;
+    background-color: hsl(0 0% 100% / 0.75);
+    backdrop-filter: blur(1rem);
+    display: grid;
+    font-weight: 500;
+    grid-template-columns: minmax(var(--gutter), 1fr) min(calc(100% - (var(--gutter) * 2)), 1200px) minmax(var(--gutter), 1fr);
+    padding-block: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    @media (min-width: 1200px) {
+        padding-block: 1rem;
+    }
+}
+
+.header__content {
+    grid-column: 2;
+    display: flex;
+    align-items: baseline;
+
+    // @media (min-width: 900px) {
+    //     display: grid;
+    //     justify-content: center;
+    // }
+}
+
+.header__logo {
+    margin-inline-end: auto;
+    padding-block: 1rem;
+
+    // @media (min-width: 900px) {
+    //     font-size: 1.5em;
+    //     padding-block: .75rem;
+    //     position: absolute;
+    //     left: 50%;
+    //     translate: -50%;
+    // }
+}
+
+.header__nav {
+    @media (min-width: 900px) {
+        grid-row: 1;
+    }
+}
+
+.header__nav__toggle {
+    padding-block: 1rem;
+
+    @media (min-width: 600px) {
+        display: none;
+    }
+}
+
+.header__nav__menu {
+    @media (max-width: 599px) {
+        display: none;
+    }
+
+    @media (min-width: 600px) {
+        display: flex;
+        gap: 2rem;
+    }
+
+    // @media (min-width: 900px) {
+    //     display: grid;
+    //     gap: 3rem;
+    //     grid-template-columns: repeat(5, 1fr);
+    // }
+}
+
+.header__nav__menu__item {
+    padding-block: 1rem;
+    position: relative;
+    text-align: center;
+
+    &:nth-of-type(3) {
+        grid-column: 4;
+    }
+
+    &:nth-of-type(4) {
+        grid-column: 5;
+    }
+
+    &::after {
+      background-color: currentColor;
+      content: '';
+      display: block;
+      height: 1px;
+      inset: auto 0 0;
+      position: absolute;
+      transform: scaleX(0);
+      transition: 125ms ease;
+    }
+
+    @media (min-width: 600px) {
+      &:focus::after,
+      &:hover::after {
+        transform: scaleX(1);
+        transition: 250ms ease;
+      }
+    }
+}
+
+.header__nav__menu__item__link {
+    font-size: 0.875em;
+    letter-spacing: 0.05em;
+    padding-block: 1rem;
+    text-transform: uppercase;
+}

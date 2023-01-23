@@ -1,27 +1,45 @@
-@import 'reset';
-@import 'header';
-@import 'section';
+@import './styles/reset';
+// @import './styles/color';
+@import './styles/header';
+@import './styles/section';
+@import './styles/columns';
+@import './styles/card';
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 6rem;
+}
 
 body {
+    background-color: hsl(0 0% 99%);
+    color: hsl(0 0% 15%);
     font-family: Roboto;
-    font-weight: 500;
 }
 
 h1, h2, h3, h4 {
     font-family: 'Yeseva One';
-    font-weight: 400;
 }
 
 p {
     max-width: 75ch;
 }
 
-.main {
+p + p {
+    margin-block-start: 1rem;
+}
+
+.main,
+.footer {
     --gutter: 1rem;
     display: grid;
     grid-template-columns: minmax(var(--gutter), 1fr) min(calc(100% - (var(--gutter) * 2)), 1200px) minmax(var(--gutter), 1fr);
+
+    @media (min-width: 900px) {
+      --gutter: 2rem;
+    }
 }
 
-.main > * {
+.main > *,
+.footer > * {
     grid-column: 2;
 }
