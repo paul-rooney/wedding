@@ -1,23 +1,31 @@
 :root {
-  --primary-hue: 320;
-  --primary-saturation: 50%;
-  --primary-lightness: 50%;
+    --pink-100: #ffebf7;
+    --pink-200: #ffe7fc;
+    --pink-300: #ffd4f6;
+    --pink-400: #ffb2e5;
+    --pink-500: #fb83cb;
+    --pink-600: #e84faa;
+    --pink-700: #aa2675;
+    --pink-800: #6c0b45;
+    --pink-900: #33001f;
 
-  --surface-hue: var(--primary-hue);
-  --surface-saturation: 30%;
-  --surface-lightness: 95%;
+    --yellow-100: #fffef2;
+    --yellow-200: #fffcd0;
+    --yellow-300: #fffbae;
+    --yellow-400: #fff98a;
+    --yellow-500: #fff665;
+    --yellow-600: #fff140;
+    --yellow-700: #ffe61a;
+    --yellow-800: #d9bd10;
+    --yellow-900: #876d07;
 
-  --text-hue: var(--primary-hue);
-  --text-saturation: 60%;
-  --text-lightness: 15%;
-
-  --primary: hsl(var(--primary-hue) var(--primary-saturation) var(--primary-lightness) / var(--opacity, 1));
-
-  --surface-100: hsl(var(--surface-hue) calc(var(--surface-saturation) - 10%) calc(var(--surface-lightness) + 3.75%) / var(--opacity, 1));
-  --surface-300: hsl(var(--surface-hue) calc(var(--surface-saturation) - 5%) calc(var(--surface-lightness) + 2.5%) / var(--opacity, 1));
-  --surface-500: hsl(var(--surface-hue) var(--surface-saturation) var(--surface-lightness) / var(--opacity, 1));
-  --surface-700: hsl(var(--surface-hue) calc(var(--surface-saturation) + 25% ) calc(var(--surface-lightness) - 60%) / var(--opacity, 1));
-  --surface-900: hsl(var(--surface-hue) calc(var(--surface-saturation) + 40% ) calc(var(--surface-lightness) - 80%) / var(--opacity, 1));
-
-  --text: hsl(var(--text-hue) var(--text-saturation) var(--text-lightness) / var(--opacity, 1));
+    --green-100: #edfffd;
+    --green-200: #c9fbf5;
+    --green-300: #9ff4ea;
+    --green-400: #71eadc;
+    --green-500: #3dd9c6;
+    --green-600: #07bda7;
+    --green-700: #069382;
+    --green-800: #02594f;
+    --green-900: #001412;
 }

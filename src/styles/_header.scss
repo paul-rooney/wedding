@@ -53,6 +53,15 @@
     }
 }
 
+[data-width] {
+    --width: attr(data-width px);
+    width: var(--width) !important;
+}
+
+[data-width]::before {
+    content: attr(data-width);
+}
+
 .header__nav__menu {
     @media (max-width: 599px) {
         display: none;

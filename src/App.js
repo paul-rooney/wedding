@@ -1,14 +1,16 @@
 import CardGallery from './components/CardGallery';
+import Crossword from './components/Crossword';
 
 function App() {
     return (
         <>
+        <Crossword />
         <header className="header">
             <div className="header__content">
                 <a className="header__logo" href="#home">K<span className="header__logo__ampersand">&</span>S</a>
                 <nav className="header__nav">
                     <a className="header__nav__toggle" href="" data-nav-toggle>Menu</a>
-                    <menu className="header__nav__menu">
+                    <menu data-width="100" className="header__nav__menu">
                         <li className="header__nav__menu__item"><a className="header__nav__menu__item__link" href="#venue">Venue</a></li>
                         <li className="header__nav__menu__item"><a className="header__nav__menu__item__link" href="#stay">Stay</a></li>
                         <li className="header__nav__menu__item"><a className="header__nav__menu__item__link" href="#itinerary">Itinerary</a></li>

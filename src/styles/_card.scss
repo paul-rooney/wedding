@@ -2,6 +2,7 @@
     overflow-x: auto;
     overscroll-behavior-x: contain;
     background-color: hsl(0 50% 99%);
+    // scroll-snap-type: x proximity;
 
     grid-column: 1 / -1 !important; // .main > * { grid-column } is overwriting this currently
 }
@@ -12,7 +13,6 @@
     gap: 2rem;
     grid-auto-columns: 300px;
     grid-auto-flow: column;
-    scroll-snap-type: x proximity;
     // scroll-padding-inline: var(--scroll-padding-inline);
     padding-inline: max(var(--scroll-padding-inline), var(--gutter));
     padding-block: 1rem;
@@ -23,8 +23,8 @@
                 0 1px 5px 0 rgba(0, 0, 0, .12),
                 0 3px 1px -2px rgba(0, 0, 0, .2);
     position: relative;
+    // scroll-snap-align: start;
     scale: 1;
-    scroll-snap-align: start;
     transition: all 125ms ease;
 
     &:focus,
