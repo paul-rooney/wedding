@@ -6,7 +6,7 @@ const Header = () => (
                 <li><a href="#">Venue</a></li>
                 <li><a href="#stay">Stay</a></li>
                 <li><a href="#itinerary">Itinerary</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
+                <li className="highlight"><a href="#rsvp">RSVP</a></li>
             </ul>
         </nav>
     </header>

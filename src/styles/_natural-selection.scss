@@ -30,7 +30,7 @@ Root
     --slightly-desaturated-cyan: hsl(180 27.5% 62.2% / var(--opacity, 1));
 }
 html {
-    font-size: 1rem;
+    font-size: 1.125rem;
     scroll-behavior: smooth;
 }
 body {
@@ -88,7 +88,7 @@ header a[href="#home"] {
 nav {}
 nav ul, nav ol { --space: 1rem; }
 nav li {
-    --size: 0.625em;
+    --size: 0.5em;
     font-size: var(--size, 1em);
     font-weight: 500;
     letter-spacing: 0.04em;
@@ -165,10 +165,11 @@ blockquote {}
 
 figure {
     box-shadow:
-        0 2px 4px hsl(0 0% 0% / 0.2),
-        0 4px 8px hsl(0 0% 0% / 0.14),
-        0 8px 16px hsl(0 0% 0% / 0.12);
-    background-color: var(--slightly-desaturated-blue);
+        0 2px 4px hsl(178.8 70% 10% / 0.2),
+        0 4px 8px hsl(178.8 70% 10% / 0.14),
+        0 8px 16px hsl(178.8 70% 10% / 0.12);
+    background-color: var(--light-greyish-cyan);
+    // 178.8 36.2% 72.4%
 }
 figcaption {}
 
@@ -183,7 +184,7 @@ dd {}
 Inline text semantics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-a {}
+a { cursor: pointer; }
 a:visited {}
 a:hover {}
 a:active {}
@@ -472,7 +473,7 @@ Media queries
     nav ul { --space: 2rem; }
 
     nav li {
-        --size: 0.75em;
+        --size: 0.625em;
     }
 }
 
@@ -484,7 +485,7 @@ Media queries
     nav ul { --space: 3rem; }
 
     nav li {
-        --size: 0.875em;
+        --size: 0.75em;
     }
 }
 

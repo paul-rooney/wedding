@@ -1,5 +1,6 @@
 import confetti from 'canvas-confetti';
 import { useEffect, useState } from 'react';
+// import '../../../assets/svg/feather-sprite.svg';
 
 const Form = () => {
     const [isAttending, setIsAttending] = useState(false);
@@ -179,7 +180,7 @@ const Form = () => {
                         <p className="error">This is where any errors will show up.</p>
                     </fieldset>
 
-                    <fieldset className="">
+                    <fieldset style={{ marginBlockStart: '3rem' }}>
                         <button type="submit" enterKeyHint="send" disabled={isSubmitting} hidden={success}>
                             <span className="with-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="icon">

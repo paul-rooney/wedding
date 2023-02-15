@@ -141,19 +141,16 @@
 
 /* The Grid
 -----------------------------------------------------------------------*/
-// .grid {
-//   --min: 15rem;
-//   --space: 1rem;
-//   align-content: start;
-//   display: grid;
-//   gap: var(--space);
-//   grid-template-columns: 100%;
-// }
-//
-// /* needs javascript for when the container size is wider than the grid width */
-// .grid.aboveMin {
-//   grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
-// }
+.grid {
+    display: grid;
+    grid-gap: 1rem;
+}
+
+@supports (width: min(250px, 100%)) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    }
+}
 
 /* The Frame
 -----------------------------------------------------------------------*/

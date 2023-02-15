@@ -147,7 +147,7 @@ Root
 }
 
 html {
-  font-size: 1rem;
+  font-size: 1.125rem;
   scroll-behavior: smooth;
 }
 
@@ -219,7 +219,7 @@ nav ul, nav ol {
 }
 
 nav li {
-  --size: 0.625em;
+  --size: 0.5em;
   font-size: var(--size, 1em);
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -271,13 +271,17 @@ p, ol, ul, pre, blockquote, figure, hr, dl {
 }
 
 figure {
-  box-shadow: 0 2px 4px hsla(0deg, 0%, 0%, 0.2), 0 4px 8px hsla(0deg, 0%, 0%, 0.14), 0 8px 16px hsla(0deg, 0%, 0%, 0.12);
-  background-color: var(--slightly-desaturated-blue);
+  box-shadow: 0 2px 4px hsla(178.8deg, 70%, 10%, 0.2), 0 4px 8px hsla(178.8deg, 70%, 10%, 0.14), 0 8px 16px hsla(178.8deg, 70%, 10%, 0.12);
+  background-color: var(--light-greyish-cyan);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Inline text semantics
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+a {
+  cursor: pointer;
+}
+
 /* If you specify a font size, consider using the `em` unit so that it works
 universally, e.g. for both `h1 small` and `p small` */
 time span {
@@ -436,7 +440,7 @@ Media queries
     --space: 2rem;
   }
   nav li {
-    --size: 0.75em;
+    --size: 0.625em;
   }
 }
 @media (min-width: 900px) {
@@ -447,7 +451,7 @@ Media queries
     --space: 3rem;
   }
   nav li {
-    --size: 0.875em;
+    --size: 0.75em;
   }
 }
 /*
@@ -566,6 +570,16 @@ https://github.com/frontaid/natural-selection
 
 /* The Grid
 -----------------------------------------------------------------------*/
+.grid {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+@supports (width: min(250px, 100%)) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  }
+}
 /* The Frame
 -----------------------------------------------------------------------*/
 .frame {
@@ -700,17 +714,25 @@ https://github.com/frontaid/natural-selection
   letter-spacing: -0.02em;
   padding-block: 2.5rem 5rem;
   background-color: var(--slightly-desaturated-blue);
+  position: relative;
+}
+
+.clock::before {
+  content: "";
+  inset: 0 0 0 0;
+  z-index: -1;
 }
 
 .clock span {
   color: var(--light-greyish-cyan);
   font-size: 1rem;
+  font-weight: 400;
   letter-spacing: 0.04em;
 }
 
 #stay {
-  background-color: var(--mostly-desaturated-dark-blue);
-  color: var(--light-greyish-cyan);
+  background-color: var(--greyish-cyan);
+  color: var(--mostly-desaturated-dark-blue);
   padding-block: 5rem;
 }
 
@@ -738,7 +760,8 @@ https://github.com/frontaid/natural-selection
 }
 
 .diagonal {
-  --background-color: var(--greyish-cyan);
+  --background-color: var(--slightly-desaturated-blue);
+  background-color: var(--background-color);
   position: relative;
   isolation: isolate;
   color: #fff;
@@ -747,7 +770,7 @@ https://github.com/frontaid/natural-selection
 .diagonal::after {
   content: "";
   background-color: var(--background-color);
-  background-image: radial-gradient(var(--slightly-desaturated-blue) 0.5px, transparent 0.5px), radial-gradient(var(--slightly-desaturated-blue) 0.5px, var(--background-color) 0.5px);
+  background-image: radial-gradient(var(--mostly-desaturated-dark-blue) 0.5px, transparent 0.5px), radial-gradient(var(--mostly-desaturated-dark-blue) 0.5px, var(--background-color) 0.5px);
   background-position: 0 0, 10px 10px;
   background-size: 20px 20px;
   position: absolute;
@@ -755,6 +778,27 @@ https://github.com/frontaid/natural-selection
   height: 100%;
   transform: skewY(-5deg);
   z-index: -1;
+}
+
+.fade-in-left {
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.fade-in-left.animate {
+  opacity: 1;
+  transition: opacity 250ms ease;
+}
+
+.highlight {
+  background-color: var(--very-soft-yellow);
+  padding: 0.5em 1em;
+  color: var(--slightly-desaturated-blue);
+}
+
+.gallery {
+  padding-inline: 6rem;
+  padding-inline: max(1rem, (100vw - var(--measure)) / 2 - 0.5rem);
 }
 
 .align-items\:baseline {

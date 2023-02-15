@@ -46,7 +46,6 @@
     font-size: 0.75em;
 }
 
-
 #venue {}
 
 .call-to-action {
@@ -67,18 +66,27 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     padding-block: 2.5rem 5rem;
-    background-color: var(--slightly-desaturated-blue)
+    background-color: var(--slightly-desaturated-blue);
+    position: relative;
+}
+
+.clock::before {
+    content: '';
+    // background: linear-gradient(180deg, #87afc9, #8db9cb, #93c3cd, #99cbd0, #9fd2d1);    position: absolute;
+    inset: 0 0 0 0;
+    z-index: -1;
 }
 
 .clock span {
     color: var(--light-greyish-cyan);
     font-size: 1rem;
+    font-weight: 400;
     letter-spacing: 0.04em;
 }
 
 #stay {
-    background-color: var(--mostly-desaturated-dark-blue);
-    color: var(--light-greyish-cyan);
+    background-color: var(--greyish-cyan);
+    color: var(--mostly-desaturated-dark-blue);
     padding-block: 5rem;
 }
 
@@ -107,7 +115,8 @@
 }
 
 .diagonal {
-    --background-color: var(--greyish-cyan);
+    --background-color: var(--slightly-desaturated-blue);
+    background-color: var(--background-color);
     position: relative;
     isolation: isolate;
     color: #fff;
@@ -117,8 +126,8 @@
     content: '';
     background-color: var(--background-color);
     background-image:
-        radial-gradient(var(--slightly-desaturated-blue) 0.5px, transparent 0.5px),
-        radial-gradient(var(--slightly-desaturated-blue) 0.5px, var(--background-color) 0.5px);
+        radial-gradient(var(--mostly-desaturated-dark-blue) 0.5px, transparent 0.5px),
+        radial-gradient(var(--mostly-desaturated-dark-blue) 0.5px, var(--background-color) 0.5px);
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
     position: absolute;
@@ -126,4 +135,27 @@
     height: 100%;
     transform: skewY(-5deg);
     z-index: -1;
+}
+
+.fade-in-left {
+    opacity: 0;
+    transition: opacity 250ms ease;
+}
+
+.fade-in-left.animate {
+    opacity: 1;
+    transition: opacity 250ms ease;
+}
+
+#itinerary {}
+
+.highlight {
+    background-color: var(--very-soft-yellow);
+    padding: 0.5em 1em;
+    color: var(--slightly-desaturated-blue);
+}
+
+.gallery {
+    padding-inline: 6rem;
+    padding-inline: max(1rem, calc((100vw - var(--measure)) / 2 - 0.5rem));
 }
