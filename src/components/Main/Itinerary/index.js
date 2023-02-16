@@ -1,29 +1,42 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
+import { useOnScreen } from '../../../hooks/useOnScreen';
 
-const Itinerary = ({ innerRef, animate }) => {
-    useEffect(() => {
-        if (animate) {
-            innerRef.current.classList.add('animate');
+const Itinerary = () => {
+    const [containerRef, isVisible] = useOnScreen({
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    });
+
+    useLayoutEffect(() => {
+        if (isVisible) {
+            containerRef.current.classList.add('animate');
+        } else {
+            containerRef.current.classList.remove('animate');
         }
-    }, [animate]);
+    }, [isVisible]);
 
     return (
         <section className="diagonal" id="itinerary">
-            <div className="center stack fade-in-left" ref={innerRef}>
+            <div className="center stack fade-in" ref={containerRef}>
                 <h2 className="section__heading">Itinerary</h2>
 
-                <div className="switcher">
-                    <div>
-                        <h3>Friday</h3>
-                        <time dateTime="">14 July</time>
+                <div className="">
+                    <div className="itinerary__day">
+                        <div>
+                            <h3>Friday</h3>
+                            <time dateTime="">14 July</time>
+                        </div>
                         <ol>
                             <li><time dateTime="">8:00<span>PM</span></time> Pre-wedding gathering; TBC</li>
                         </ol>
                     </div>
 
-                    <div>
-                        <h3>Saturday</h3>
-                        <time dateTime="">15 July</time>
+                    <div className="itinerary__day">
+                        <div>
+                            <h3>Saturday</h3>
+                            <time dateTime="">15 July</time>
+                        </div>
                         <ol>
                             <li><time dateTime="">12:45<span>PM</span></time> Ceremony at Reading Town Hall</li>
                             <li><time dateTime="">2:00<span>PM</span></time> Welcome drinks at Thames Lido</li>
@@ -37,9 +50,11 @@ const Itinerary = ({ innerRef, animate }) => {
                         </ol>
                     </div>
 
-                    <div>
-                        <h3>Sunday</h3>
-                        
+                    <div className="itinerary__day">
+                        <div>
+                            <h3>Sunday</h3>
+                            <time dateTime="">16 July</time>
+                        </div>
                     </div>
                 </div>
             </div>

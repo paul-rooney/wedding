@@ -1,11 +1,11 @@
 #home {
-    background-color: var(--mostly-desaturated-dark-blue);
-    background-image:
-        radial-gradient(var(--slightly-desaturated-blue) 0.5px, transparent 0.5px),
-        radial-gradient(var(--slightly-desaturated-blue) 0.5px, var(--mostly-desaturated-dark-blue) 0.5px);
-    background-position: 0 0, 10px 10px;
-    background-size: 20px 20px;
-    color: var(--very-soft-yellow);
+    background-color: var(--blue-500);
+    // background-image:
+    //     radial-gradient(var(--blue-400) 1px, transparent 1px),
+    //     radial-gradient(var(--blue-400) 1px, var(--blue-500) 1px);
+    // background-position: 0 0, 10px 10px;
+    // background-size: 20px 20px;
+    color: var(--yellow-600);
 }
 
 #home > div {
@@ -15,8 +15,35 @@
 #home > div > p {
     font-size: clamp(0.75em, 2.5vw, 1em);
     letter-spacing: 0.04em;
-    color: hsl(51.9 31.1% 83.7%);
+    color: var(--yellow-700);
 }
+
+#venue {}
+
+#itinerary {
+    --background-color: var(--green-900);
+    color: var(--green-300);
+}
+
+#stay {
+    background-color: var(--blue-500);
+    color: var(--blue-800);
+    padding-block: 5rem;
+}
+
+#rsvp {
+    --background-color: var(--blue-500);
+    --color: var(--yellow-600);
+    background-color: var(--background-color);
+    background-image:
+        linear-gradient(to bottom, hsl(203 20% 50% / 0.95), hsl(203 20% 50% / 0.95)),
+        url('./assets/img/lido-outline.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    color: var(--color);
+}
+
 
 .divider {
     margin-block-end: 1em;
@@ -26,7 +53,7 @@
 .divider::before {
     content: '';
     display: block;
-    background-color: hsl(51.9 31.1% 83.7%);
+    background-color: var(--yellow-700);
     height: 3px;
     inset-inline: calc(50% - 0.75em);
     inset-block-end: -1em;
@@ -46,27 +73,26 @@
     font-size: 0.75em;
 }
 
-#venue {}
 
 .call-to-action {
-    background-color: var(--very-soft-yellow);
-    color: var(--mostly-desaturated-dark-blue);
+    background-color: var(--yellow-600);
+    color: var(--blue-500);
     font-size: 1.5em;
     font-weight: 500;
     letter-spacing: 0.04em;
     padding: 0.5em 1em;
-    border: 3px solid var(--mostly-desaturated-dark-blue);
-    outline: 3px solid var(--very-soft-yellow);
+    border: 3px solid var(--blue-500);
+    outline: 3px solid var(--yellow-600);
 }
 
 .clock {
     --space: 3rem;
-    color: var(--very-soft-yellow);
+    color: var(--yellow-600);
     font-size: 6rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     padding-block: 2.5rem 5rem;
-    background-color: var(--slightly-desaturated-blue);
+    background-color: var(--blue-600);
     position: relative;
 }
 
@@ -78,23 +104,12 @@
 }
 
 .clock span {
-    color: var(--light-greyish-cyan);
+    color: var(--blue-800);
     font-size: 1rem;
     font-weight: 400;
     letter-spacing: 0.04em;
 }
 
-#stay {
-    background-color: var(--greyish-cyan);
-    color: var(--mostly-desaturated-dark-blue);
-    padding-block: 5rem;
-}
-
-#rsvp {
-    background-color: var(--mostly-desaturated-dark-blue);
-    // background-color: hsl(203 23% 39%);
-    color: var(--very-soft-yellow);
-}
 
 [data-collapsed="true"],
 [data-collapsed="true"] > * {
@@ -115,21 +130,22 @@
 }
 
 .diagonal {
-    --background-color: var(--slightly-desaturated-blue);
-    background-color: var(--background-color);
     position: relative;
     isolation: isolate;
-    color: #fff;
 }
 
 .diagonal::after {
     content: '';
-    background-color: var(--background-color);
+    background-color: var(--background-color, inherit);
     background-image:
-        radial-gradient(var(--mostly-desaturated-dark-blue) 0.5px, transparent 0.5px),
-        radial-gradient(var(--mostly-desaturated-dark-blue) 0.5px, var(--background-color) 0.5px);
+        radial-gradient(var(--blue-400) 0.5px, transparent 0.5px),
+        radial-gradient(var(--blue-400) 0.5px, var(--background-color) 0.5px);
     background-position: 0 0, 10px 10px;
     background-size: 20px 20px;
+    box-shadow:
+     0 2px 4px hsl(178 100% 10% / 0.2),
+     0 4px 8px hsl(178 100% 10% / 0.14),
+     0 8px 16px hsl(178 100% 10% / 0.12);
     position: absolute;
     inset: 0;
     height: 100%;
@@ -137,25 +153,95 @@
     z-index: -1;
 }
 
-.fade-in-left {
+.fade-in {
     opacity: 0;
-    transition: opacity 250ms ease;
+    transform: scale(0.9);
+    transition: all 250ms ease;
 }
 
-.fade-in-left.animate {
+.fade-in.animate {
     opacity: 1;
-    transition: opacity 250ms ease;
+    transform: scale(1);
+    transition: all 1000ms ease;
 }
 
-#itinerary {}
+.fade-in-up {
+    opacity: 0;
+    translate: 0 5%;
+    transform: scale(0.9);
+    transition: all 1000ms ease;
+}
+
+.fade-in-up.animate {
+    opacity: 1;
+    translate: 0;
+    transform: scale(1);
+    transition: all 1000ms ease;
+}
 
 .highlight {
-    background-color: var(--very-soft-yellow);
-    padding: 0.5em 1em;
-    color: var(--slightly-desaturated-blue);
+    background-color: var(--yellow-600);
+    border-radius: 2px;
+    padding: 0.75em 1.25em 0.625em;
+    color: var(--blue-400);
+    position: relative;
 }
 
-.gallery {
-    padding-inline: 6rem;
-    padding-inline: max(1rem, calc((100vw - var(--measure)) / 2 - 0.5rem));
+.highlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--yellow-600);
+    transform: scale(1);
+    border-radius: 2px;
+    z-index: 0;
+    transition: all 125ms ease;
+    box-shadow:
+        0 2px 4px hsl(32 100% 20% / 0.2),
+        0 4px 8px hsl(32 100% 20% / 0.14),
+        0 8px 16px hsl(32 100% 20% / 0.12);
+}
+
+.highlight:hover::before {
+    background-color: var(--yellow-500);
+    transition: all 250ms ease;
+    transform: scale(1.1);
+
+    box-shadow:
+        0 4px 8px hsl(32 100% 20% / 0.2),
+        0 8px 16px hsl(32 100% 20% / 0.14),
+        0 16px 32px hsl(32 100% 20% / 0.12);
+}
+
+.dot-navigation {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.dot-navigation__item {
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    height: 0.75rem;
+    width: 0.75rem;
+
+    background-color: transparent;
+    margin: 0 0.25rem;
+}
+
+.dot-navigation__item--active {
+    background-color: #d1d5db;
+}
+
+
+@media (max-width: 599px) {
+    .dot-navigation {
+        display: none;
+    }
+}
+
+.itinerary__day {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

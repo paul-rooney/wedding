@@ -13,30 +13,51 @@ Root
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 :root {
-    --border: 1px solid black;
+    --border: 1px solid currentColor;
     --padding: 1rem;
     --border-thick: 0;
     --measure: 90ch;
 
-    /* Color
-    * * * * */
-    --slightly-desaturated-blue: hsl(203.6 37.9% 65.9% / var(--opacity, 1));
-    --mostly-desaturated-dark-blue: hsl(203.1 20.5% 49.8% / var(--opacity, 1));
+    // Blue
+    --blue-100: #000e1f;
+    --blue-200: #122941;
+    --blue-300: #304a63;
+    --blue-400: #506d85;
+    --blue-500: #658599;
+    --blue-600: #87afc9;
+    --blue-700: #abcbdb;
+    --blue-800: #cfe5ed;
+    --blue-900: #f2fcff;
 
-    --very-soft-yellow: hsl(51.9 71.1% 83.7% / var(--opacity, 1));
+    // Yellow
+    --yellow-100: #331b00;
+    --yellow-200: #935b06;
+    --yellow-300: #cd931e;
+    --yellow-400: #e7bd49;
+    --yellow-500: #f0da82;
+    --yellow-600: #f3ebb8;
+    --yellow-700: #f8f3dd;
+    --yellow-800: #fcf9f2;
+    --yellow-900: #fffdfa;
 
-    --light-greyish-cyan: hsl(180 28.6% 80.8% / var(--opacity, 1));
-    --greyish-cyan: hsl(178.8 36.2% 72.4% / var(--opacity, 1));
-    --slightly-desaturated-cyan: hsl(180 27.5% 62.2% / var(--opacity, 1));
+    // Green
+    --green-100: #003331;
+    --green-200: #074745;
+    --green-300: #115b59;
+    --green-400: #1f6f6c;
+    --green-500: #318380;
+    --green-600: #479694;
+    --green-700: #61aaa9;
+    --green-800: #7ebebd;
+    --green-900: #9fd2d1;
 }
 html {
-    font-size: 1.125rem;
+    // font-size: 1.125rem;
     scroll-behavior: smooth;
 }
 body {
-    // TODO: Set variable
-    background-color: var(--mostly-desaturated-dark-blue);
-    color: #658599;
+    background-color: var(--blue-500);
+    color: var(--blue-800);
     font-family: 'Futura';
     line-height: 1.4;
 }
@@ -69,10 +90,8 @@ h5 { font-size: 1.125em; }
 h6 { font-size: 1em; }
 
 header {
-    --opacity: 0.75;
-    backdrop-filter: blur(0.5rem);
-    background-color: hsl(203.1 20.5% 49.8% / var(--opacity, 1));
-    color: var(--light-greyish-cyan);
+    background-image: linear-gradient(to bottom, var(--blue-400), transparent);
+    color: var(--blue-800);
     padding: var(--padding);
     position: sticky;
     inset-block-start: 0;
@@ -104,7 +123,7 @@ nav a:active {}
 
 nav a::after {
     content: '';
-    background-color: var(--very-soft-yellow);
+    background-color: var(--yellow-600);
     height: 3px;
     position: absolute;
     inset-block-end: 0;
@@ -113,7 +132,7 @@ nav a::after {
     transform: scaleX(0);
     transition: transform 125ms ease;
 }
-nav a:hover::after {
+nav a:not(.highlight a):hover::after {
     transform: scaleX(1);
     transition: transform 250ms ease;
 }
@@ -130,12 +149,18 @@ section {
 aside {}
 
 footer {
-    background-color: var(--mostly-desaturated-dark-blue);
-    background-color: hsl(203 48% 12%);
-    color: var(--light-greyish-cyan);
-    color: var(--slightly-desaturated-blue);
-    padding: var(--padding);
+    background-color: var(--blue-300);
+    color: var(--blue-500);
     font-size: 0.875em;
+
+    div {
+        padding: var(--padding);
+    }
+
+    p {
+        background-color: var(--blue-200);
+        padding: var(--padding);
+    }
 }
 
 address {}
@@ -165,13 +190,29 @@ blockquote {}
 
 figure {
     box-shadow:
-        0 2px 4px hsl(178.8 70% 10% / 0.2),
-        0 4px 8px hsl(178.8 70% 10% / 0.14),
-        0 8px 16px hsl(178.8 70% 10% / 0.12);
-    background-color: var(--light-greyish-cyan);
-    // 178.8 36.2% 72.4%
+        0 2px 4px hsl(207 70% 10% / 0.2),
+        0 4px 8px hsl(207 70% 10% / 0.14),
+        0 8px 16px hsl(207 70% 10% / 0.12);
+    background-color: var(--blue-600);
+    border-radius: 2px;
 }
-figcaption {}
+
+figure picture {
+    border-top: 1px solid hsl(0 0% 100% / 0.12);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%);
+}
+
+figcaption {
+    color: var(--blue-300);
+
+    p:first-child {
+        font-size: 1.25rem;
+        margin-block-end: .25rem;
+    }
+    address {
+        margin-block-start: 1rem;
+    }
+}
 
 hr {}
 
@@ -331,16 +372,21 @@ input[type="week"] {}
 input[type="time"] {}
 /* Tick boxes */
 label:has(input[type="checkbox"]), label:has(input[type="radio"]) {
-    accent-color: var(--very-soft-yellow);
+    accent-color: var(--yellow-600);
     cursor: pointer;
     margin-block-start: 0;
     border: 1px solid currentColor;
     padding: 0.5rem;
 }
 label:has(input[type="checkbox"]:checked), label:has(input[type="radio"]:checked) {
-    background-color: var(--very-soft-yellow);
-    border: 1px solid var(--very-soft-yellow);
-    color: var(--mostly-desaturated-dark-blue);
+    background-color: var(--yellow-600);
+    border: 1px solid var(--yellow-600);
+    color: var(--blue-500);
+}
+label:has(input[type="checkbox"]:checked):hover, label:has(input[type="radio"]:checked):hover {
+    background-color: var(--yellow-500);
+    border: 1px solid var(--yellow-500);
+    color: var(--blue-500);
 }
 input[type="checkbox"] {
     display: none;
@@ -366,25 +412,28 @@ datalist {}
 
 button[type="submit"],
 input[type="submit"] {
-    background-color: var(--very-soft-yellow);
-    border: 3px solid var(--mostly-desaturated-dark-blue);
-    color: var(--mostly-desaturated-dark-blue);
+    background-color: var(--color);
+    border: 3px solid var(--background-color);
+    color: var(--background-color);
     cursor: pointer;
     font-weight: 500;
     padding: 0.5em 1em;
     font-size: 1.125em;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    outline: 3px solid var(--very-soft-yellow);
+    outline: 3px solid var(--color);
+    transition: all 125ms ease;
 }
 button[type="submit"]:hover,
 input[type="submit"]:hover {
-    opacity: 0.875;
+    background-color: var(--yellow-500);
+    outline-color: var(--yellow-500);
+    transition: all 250ms ease;
 }
 button[type="submit"]:disabled,
 input[type="submit"]:disabled {
     cursor: wait;
-    opacity: 0.5;
+    background-color: var(--yellow-700);
 }
 button.secondary {}
 button.secondary:disabled {}
@@ -467,7 +516,7 @@ Media queries
 
 @media (min-width: 600px) {
     :root {
-        --padding: 1.5rem;
+        --padding: 1.25rem;
     }
 
     nav ul { --space: 2rem; }
@@ -479,13 +528,13 @@ Media queries
 
 @media (min-width: 900px) {
     :root {
-        --padding: 2rem;
+        --padding: 1.5rem;
     }
 
     nav ul { --space: 3rem; }
 
     nav li {
-        --size: 0.75em;
+        --size: 0.675em;
     }
 }
 

@@ -1,6 +1,6 @@
 import confetti from 'canvas-confetti';
-import { useEffect, useState } from 'react';
-// import '../../../assets/svg/feather-sprite.svg';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { useOnScreen } from '../../../hooks/useOnScreen';
 
 const Form = () => {
     const [isAttending, setIsAttending] = useState(false);
@@ -10,6 +10,20 @@ const Form = () => {
     const [isOtherSelected, setIsOtherSelected] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
+
+    const [containerRef, isVisible] = useOnScreen({
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.25
+    });
+
+    useLayoutEffect(() => {
+        if (isVisible) {
+            containerRef.current.classList.add('animate');
+        } else {
+            containerRef.current.classList.remove('animate');
+        }
+    }, [isVisible]);
 
     useEffect(() => {
         setIsCollapsed(!isAttending)
@@ -65,7 +79,7 @@ const Form = () => {
 
     return (
         <section id="rsvp">
-            <div className="center">
+            <div className="center fade-in" ref={containerRef}>
                 <h2>RSVP</h2>
                 <form onSubmit={handleSubmit} action="./php/testmail.php" className="stack">
                     <fieldset className="switcher">
