@@ -1,15 +1,17 @@
 import confetti from 'canvas-confetti';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { useAsync } from '../../../hooks/useAsync';
 import { useOnScreen } from '../../../hooks/useOnScreen';
 
 const Form = () => {
-    const [isAttending, setIsAttending] = useState(false);
+    const [isAttending, setIsAttending] = useState(null);
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [isAllergiesSelected, setIsAllergiesSelected] = useState(false);
     const [isReligiousSelected, setIsReligiousSelected] = useState(false);
     const [isOtherSelected, setIsOtherSelected] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [isNotChecked, setIsNotChecked] = useState(null);
 
     const [containerRef, isVisible] = useOnScreen({
         root: null,
@@ -31,8 +33,8 @@ const Form = () => {
         if (isAttending) confetti();
     }, [isAttending]);
 
-    function handleChange(event) {
-        const target = event.target;
+    function handleChange(e) {
+        const target = e.target;
         const value = target.value;
 
         confetti({
@@ -56,32 +58,59 @@ const Form = () => {
         });
     };
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        const options = {
-          method: 'POST',
-          body: data,
-          redirect: 'follow'
-        };
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        if (e.currentTarget.querySelectorAll('[name="isAttending"]')[0].checked ||
+            e.currentTarget.querySelectorAll('[name="isAttending"]')[1].checked) {
+            setIsNotChecked(false);
+        } else {
+            setIsNotChecked(true);
+            return;
+        }
 
         setIsSubmitting(true);
 
+        let dietaryRequirements = [];
+
+        e.currentTarget.querySelectorAll('[name^="diet"]').forEach(input => {
+            if (input.checked) dietaryRequirements.push(input.value);
+        });
+
+        const data = new FormData();
+        data.append('firstName', e.currentTarget.firstName.value);
+        data.append('lastName', e.currentTarget.lastName.value);
+        data.append('email', e.currentTarget.email.value);
+        data.append('isAttending', e.currentTarget.isAttending.value);
+        data.append('phone', e.currentTarget?.phone?.value);
+        data.append('song', e.currentTarget?.song?.value);
+        data.append('diet', dietaryRequirements);
+        data.append('dietOther', e.currentTarget?.dietOther?.value);
+
+        const options = {
+            method: "POST",
+            body: data,
+            redirect: "follow"
+        };
+
         fetch('https://www.stephenandkiana.wedding/php/testmail.php', options)
-          .then(response => response.json())
-          .then(response => {
-              console.log(response);
-              if (response.ok) setSuccess(true);
-          })
-          .catch(error => console.error(error))
-          .finally(setIsSubmitting(false));
+            .then(response => response.json())
+            .then(response => {
+                if (response === 200) {
+                    setSuccess(true);
+                } else {
+                    setSuccess(false);
+                }
+            })
+            .catch(error => console.error(error))
+            .finally(setIsSubmitting(false));
     };
 
     return (
         <section id="rsvp">
             <div className="center fade-in" ref={containerRef}>
                 <h2>RSVP</h2>
-                <form onSubmit={handleSubmit} action="./php/testmail.php" className="stack">
+                <form onSubmit={handleSubmit} className={isSubmitting || success ? "stack submitting" : "stack"} disabled={isSubmitting}>
                     <fieldset className="switcher">
                         <label>First name
                             <input name="firstName" autoComplete="given-name" required />
@@ -102,12 +131,12 @@ const Form = () => {
                         <p className="error">This is where any errors will show up.</p>
                     </fieldset>
 
-                    <fieldset className="switcher">
+                    <fieldset className="">
                         <legend>Are you able to attend?</legend>
 
                         <div className="switcher" style={{ '--space': '0' }}>
                             <label>Yes
-                                <input name="isAttending" type="radio" value={true} onChange={() => setIsAttending(true)} required />
+                                <input name="isAttending" type="radio" value={true} onChange={() => setIsAttending(true)} />
                             </label>
 
                             <label>No
@@ -115,7 +144,7 @@ const Form = () => {
                             </label>
                         </div>
 
-                        <p className="error">This is where any errors will show up.</p>
+                        {isNotChecked && isAttending === null && <p style={{ marginBlockStart: '0.5rem' }}>Please let us know if you&rsquo;re able to attend!</p>}
                     </fieldset>
 
                     <fieldset className="switcher" data-collapsed={isCollapsed}>
@@ -134,31 +163,31 @@ const Form = () => {
                         <legend>Dietary requirements</legend>
 
                         <label>Dairy-free
-                            <input name="diet[]" type="checkbox" value="dairyFree" />
+                            <input name="diet[]" type="checkbox" value="Dairy-free" />
                         </label>
 
                         <label>Gluten-free
-                            <input name="diet[]" type="checkbox" value="glutenFree" />
+                            <input name="diet[]" type="checkbox" value="Gluten-free" />
                         </label>
 
                         <label>Vegan
-                            <input name="diet[]" type="checkbox" value="vegan" />
+                            <input name="diet[]" type="checkbox" value="Vegan" />
                         </label>
 
                         <label>Vegetarian
-                            <input name="diet[]" type="checkbox" value="vegetarian" />
+                            <input name="diet[]" type="checkbox" value="Vegetarian" />
                         </label>
 
                         <label>Food allergies
-                            <input name="diet[]" type="checkbox" value="allergies" onChange={() => setIsAllergiesSelected(!isAllergiesSelected)} />
+                            <input name="diet[]" type="checkbox" value="Allergies" onChange={() => setIsAllergiesSelected(!isAllergiesSelected)} />
                         </label>
 
                         <label>Religious restrictions
-                            <input name="diet[]" type="checkbox" value="religious" onChange={() => setIsReligiousSelected(!isReligiousSelected)} />
+                            <input name="diet[]" type="checkbox" value="Religious" onChange={() => setIsReligiousSelected(!isReligiousSelected)} />
                         </label>
 
                         <label>Other
-                            <input name="diet[]" type="checkbox" value="other" onChange={() => setIsOtherSelected(!isOtherSelected)} />
+                            <input name="diet[]" type="checkbox" value="Other" onChange={() => setIsOtherSelected(!isOtherSelected)} />
                         </label>
                     </fieldset>
 
@@ -204,7 +233,7 @@ const Form = () => {
                                 Send
                             </span>
                         </button>
-                        {success && <p>Thanks for sending your response!</p>}
+                        {success && <p>Thanks for replying! We've got your email.</p>}
                     </fieldset>
                 </form>
             </div>

@@ -1,6 +1,13 @@
 @font-face {
   font-family: 'Futura';
   font-weight: 300;
+  font-stretch: condensed;
+  src: url('./assets/fonts/FuturaStd-CondensedLight.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Futura';
+  font-weight: 300;
   src: url('./assets/fonts/FuturaStd-Light.otf') format('opentype');
 }
 

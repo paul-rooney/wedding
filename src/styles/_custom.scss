@@ -1,10 +1,5 @@
 #home {
     background-color: var(--blue-500);
-    // background-image:
-    //     radial-gradient(var(--blue-400) 1px, transparent 1px),
-    //     radial-gradient(var(--blue-400) 1px, var(--blue-500) 1px);
-    // background-position: 0 0, 10px 10px;
-    // background-size: 20px 20px;
     color: var(--yellow-600);
 }
 
@@ -19,6 +14,32 @@
 }
 
 #venue {}
+
+#countdown{
+    position: relative;
+    isolation: isolate;
+    z-index: 0;
+}
+
+#countdown::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 40% 0;
+    background-color: var(--blue-600);
+    // background-color: red;
+    z-index: -1;
+}
+
+#countdown::after {
+    box-shadow:
+        0 2px 4px hsl(207 70% 10% / 0.2),
+        0 4px 8px hsl(207 70% 10% / 0.14),
+        0 8px 16px hsl(207 70% 10% / 0.12);
+    content: '';
+    position: absolute;
+    inset: 50% 0 0 0;
+    z-index: -2;
+}
 
 #itinerary {
     --background-color: var(--green-900);
@@ -36,7 +57,7 @@
     --color: var(--yellow-600);
     background-color: var(--background-color);
     background-image:
-        linear-gradient(to bottom, hsl(203 20% 50% / 0.95), hsl(203 20% 50% / 0.95)),
+        linear-gradient(to bottom, hsl(203 20% 50% / 0.975), hsl(203 20% 50% / 0.975)),
         url('./assets/img/lido-outline.png');
     background-size: cover;
     background-position: center bottom;
@@ -75,25 +96,33 @@
 
 
 .call-to-action {
-    background-color: var(--yellow-600);
-    color: var(--blue-500);
+    --background-color: var(--yellow-600);
+    --color: var(--blue-500);
+    background-color: var(--background-color);
+    color: var(--color);
     font-size: 1.5em;
     font-weight: 500;
     letter-spacing: 0.04em;
     padding: 0.5em 1em;
-    border: 3px solid var(--blue-500);
-    outline: 3px solid var(--yellow-600);
+    border: 3px solid var(--color);
+    outline: 3px solid var(--background-color);
+}
+
+.call-to-action:hover {
+    --background-color: var(--yellow-500);
 }
 
 .clock {
     --space: 3rem;
     color: var(--yellow-600);
-    font-size: 6rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-size: clamp(3rem, 2.2rem + 4vw, 7rem);
+    font-weight: 300;
     letter-spacing: -0.02em;
     padding-block: 2.5rem 5rem;
     background-color: var(--blue-600);
     position: relative;
+    text-align: center;
 }
 
 .clock::before {
@@ -101,6 +130,10 @@
     // background: linear-gradient(180deg, #87afc9, #8db9cb, #93c3cd, #99cbd0, #9fd2d1);    position: absolute;
     inset: 0 0 0 0;
     z-index: -1;
+}
+
+.clock > div > div {
+    min-inline-size: 10rem;
 }
 
 .clock span {
@@ -167,8 +200,8 @@
 
 .fade-in-up {
     opacity: 0;
-    translate: 0 5%;
-    transform: scale(0.9);
+    translate: 0 2.5%;
+    transform: scale(0.95);
     transition: all 1000ms ease;
 }
 
@@ -242,6 +275,42 @@
 }
 
 .itinerary__day {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    align-items: baseline;
+
+    h3 {
+        font-size: 2.5rem;
+        font-size: clamp(2.5rem, 2.2rem + 1.5vw, 4rem);
+        letter-spacing: -0.02em;
+    }
+
+    h3:not(:first-child) {
+        margin-block-start: 3rem;
+    }
+
+
+    & > div {
+        margin-block-end: 1.5rem;
+
+        time {
+            color: var(--green-600);
+            font-size: 1.125rem;
+            text-align: right;
+        }
+    }
+
+    li {
+        display: grid;
+        grid-template-columns: 75px 1fr;
+        column-gap: 0.25rem;
+
+        time {
+            color: var(--green-500);
+        }
+    }
+
+}
+
+.submitting {
+    opacity: 0.75;
+    pointer-events: none;
 }

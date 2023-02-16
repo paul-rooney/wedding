@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { useOnScreen } from '../../../hooks/useOnScreen';
+import sprite from '../../../assets/svg/feather-sprite.svg';
 
 const Home = () => {
     const [containerRef, isVisible] = useOnScreen({
@@ -32,7 +33,14 @@ const Home = () => {
                         Blagrave Street<br />
                         Reading, RG1 1QH
                     </address>
-                    <p><time>12:45<span>PM</span></time></p>
+                    <p>
+                        <span className="with-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="icon">
+                                <use href={`${sprite}#clock`} />
+                            </svg>
+                            <time>12:45<span>PM</span></time>
+                        </span>
+                    </p>
                 </div>
                 <div className="stack" style={{ '--space': '1rem' }}>
                     <h3 className="divider">Reception</h3>
@@ -41,7 +49,14 @@ const Home = () => {
                         Napier Road<br />
                         Reading, RG1 8FR
                     </address>
-                    <p><time>02:00<span>PM</span>&ndash;12:00<span>AM</span></time></p>
+                    <p>
+                        <span className="with-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="icon">
+                                <use href={`${sprite}#clock`} />
+                            </svg>
+                            <time>02:00<span>PM</span>&ndash;12:00<span>AM</span></time>
+                        </span>
+                    </p>
                 </div>
             </div>
             <div className="center">

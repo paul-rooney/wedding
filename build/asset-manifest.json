@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bca7305b.css",
+    "main.js": "/static/js/main.12c21a71.js",
+    "static/media/lido-outline.png": "/static/media/lido-outline.643d11eb8a8c72865abf.png",
+    "static/media/feather-sprite.svg": "/static/media/feather-sprite.8652aea28982635735321c1c3fbdb723.svg",
+    "static/media/FuturaStd-Bold.otf": "/static/media/FuturaStd-Bold.fe9bd26c044eb0bfaa28.otf",
+    "static/media/FuturaStd-CondensedLight.otf": "/static/media/FuturaStd-CondensedLight.ed1ec218cbf69c4083c3.otf",
+    "static/media/FuturaStd-Light.otf": "/static/media/FuturaStd-Light.15e7fc5c6d78b959bde5.otf",
+    "static/media/FuturaStd-Book.otf": "/static/media/FuturaStd-Book.5f83b0049a36e35d2265.otf",
+    "static/media/FuturaStd-Medium.otf": "/static/media/FuturaStd-Medium.360d49b0669048a4aadf.otf",
+    "index.html": "/index.html",
+    "main.bca7305b.css.map": "/static/css/main.bca7305b.css.map",
+    "main.12c21a71.js.map": "/static/js/main.12c21a71.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bca7305b.css",
+    "static/js/main.12c21a71.js"
+  ]
+}

@@ -538,6 +538,15 @@ Media queries
     }
 }
 
+@media (min-width: 32.5rem) {
+    .itinerary__day {
+        & > ol {
+            border-left: 2px dotted var(--green-700);
+            padding-left: 1.5rem;
+        }
+    }
+}
+
 /*
 This file evolved from Natural Selection:
 https://github.com/frontaid/natural-selection

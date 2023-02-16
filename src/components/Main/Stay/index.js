@@ -18,8 +18,8 @@ const Stay = () => {
     }, [isVisible]);
 
     return (
-        <section className="stack" id="stay">
-            <div className="fade-in" ref={containerRef}>
+        <section id="stay">
+            <div className="stack fade-in" style={{ '--space': '3rem' }} ref={containerRef}>
                 <div className="center">
                     <h2 className="section__heading">Stay</h2>
 
